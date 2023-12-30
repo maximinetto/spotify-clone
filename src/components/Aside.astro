@@ -1,0 +1,29 @@
+---
+import AsideMenuItem from "./AsideMenuItem.astro";
+import HomeIcon from "./icons/HomeIcon.astro";
+import SearchIcon from "./icons/SearchIcon.astro";
+
+interface Props {}
+---
+
+<aside class="menu-wrapper">
+  <nav>
+    <div class="bg-aside px-6 py-2">
+      <ul>
+        <AsideMenuItem><HomeIcon slot="icon" /> Inicio</AsideMenuItem>
+        <AsideMenuItem><SearchIcon slot="icon" /> Buscar</AsideMenuItem>
+      </ul>
+    </div>
+    <div></div>
+  </nav>
+</aside>
+
+<style>
+  .menu-wrapper {
+    grid-area: "aside";
+  }
+
+  .menu-item__text {
+    margin-bottom: -2px;
+  }
+</style>
