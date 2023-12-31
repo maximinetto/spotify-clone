@@ -1,29 +1,60 @@
 ---
 import AsideMenuItem from "./AsideMenuItem.astro";
+import Tag from "./Tag.astro";
+import AddIcon from "./icons/AddIcon.astro";
 import HomeIcon from "./icons/HomeIcon.astro";
+import LibraryIcon from "./icons/LibraryIcon.astro";
 import SearchIcon from "./icons/SearchIcon.astro";
+import ViewMoreIcon from "./icons/ViewMoreIcon.astro";
 
 interface Props {}
 ---
 
 <aside class="menu-wrapper">
-  <nav>
-    <div class="bg-aside px-6 py-2">
+  <nav class="h-full">
+    <div class="bg-aside px-6 py-2 rounded-lg">
       <ul>
-        <AsideMenuItem><HomeIcon slot="icon" /> Inicio</AsideMenuItem>
-        <AsideMenuItem><SearchIcon slot="icon" /> Buscar</AsideMenuItem>
+        <AsideMenuItem element="a" href="/">
+          <HomeIcon slot="icon" /> Inicio
+        </AsideMenuItem>
+        <AsideMenuItem element="a" href="/search">
+          <SearchIcon slot="icon" /> Buscar
+        </AsideMenuItem>
       </ul>
     </div>
-    <div></div>
+    <div class="bg-aside mt-2 px-4 py-1 rounded-lg h-full">
+      <header>
+        <ul>
+          <li>
+            <ul class="flex flex-row items-center gap-2">
+              <AsideMenuItem
+                element="button"
+                gap=".75rem"
+                class={{ root: "px-2" }}
+              >
+                <LibraryIcon slot="icon" />Tu biblioteca
+              </AsideMenuItem>
+              <AsideMenuItem element="button" class={{ root: "ml-auto" }}>
+                <AddIcon slot="icon" />
+              </AsideMenuItem>
+              <AsideMenuItem element="button">
+                <ViewMoreIcon slot="icon" />
+              </AsideMenuItem>
+            </ul>
+          </li>
+          <li class="flex flex-row gap-2 mt-3">
+            <Tag>Playlists</Tag>
+            <Tag>Artistas</Tag>
+            <Tag>Álbumes</Tag>
+          </li>
+        </ul>
+      </header>
+    </div>
   </nav>
 </aside>
 
 <style>
   .menu-wrapper {
     grid-area: "aside";
-  }
-
-  .menu-item__text {
-    margin-bottom: -2px;
   }
 </style>

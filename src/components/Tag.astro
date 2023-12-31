@@ -1,0 +1,27 @@
+---
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+---
+
+<button
+  class:list={[
+    "tag inline-flex items-center font-normal bg-tag text-baseColor leading-none align-middle rounded-full p-0 hover:bg-tagHighlighting transition duration-300",
+    className,
+  ]}
+>
+  <span
+    class="tag-item inline-flex items-center leading-none text-sm rounded-full py-1 px-3"
+  >
+    <slot />
+  </span>
+</button>
+
+<style>
+  .tag-item {
+    min-block-size: 32px;
+    min-inline-size: 0px;
+  }
+</style>
