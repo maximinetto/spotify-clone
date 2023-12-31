@@ -1,7 +1,64 @@
-<li class="text-menuItemColor">
-  <a
-    href="/"
-    class="flex flex-row items-center gap-5 py-3 hover:text-white transition duration-300"
-    ><slot name="icon" /><span class="font-bold menu-item__text"><slot /></span
-    ></a>
+---
+interface BaseProps {
+  gap?: string | number;
+  class?: {
+    root?: string;
+    item?: string;
+  };
+}
+
+interface LinkProps extends BaseProps {
+  element: "a";
+  href: string;
+}
+
+interface ButtonProps extends BaseProps {
+  element: "button";
+  href?: never;
+}
+
+type Props = LinkProps | ButtonProps;
+
+const {
+  element: Element = "a",
+  gap,
+  href,
+  class: classObj,
+  ...others
+} = Astro.props;
+
+const prop = Element === "a" ? { href } : {};
+---
+
+<li class:list={["text-menuItem", classObj?.root]}>
+  <Element
+    {...prop}
+    class:list={[
+      "flex flex-row items-center menu-item__link hover:text-baseColor transition duration-300",
+      {
+        "p-2 rounded-[100%] hover:bg-highlighting": !Astro.slots.has("default"),
+        "py-3": Astro.slots.has("default"),
+      },
+      classObj?.item,
+    ]}
+    {...others}
+  >
+    <slot name="icon" />{
+      Astro.slots.has("default") && (
+        <span class="font-bold menu-item__text">
+          <slot />
+        </span>
+      )
+    }
+  </Element>
 </li>
+
+<style define:vars={{ gap }}>
+  .menu-item__text {
+    margin-bottom: -2px;
+  }
+
+  .menu-item__link {
+    gap: var(--gap, 1.25rem);
+  }
+</style>
