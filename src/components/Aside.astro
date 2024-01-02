@@ -1,4 +1,5 @@
 ---
+import AsideMenuItemReact from "./AsideMenuItem.tsx";
 import AsideMenuItem from "./AsideMenuItem.astro";
 import Tag from "./Tag.astro";
 import AddIcon from "./icons/AddIcon.astro";
@@ -6,18 +7,16 @@ import HomeIcon from "./icons/HomeIcon.astro";
 import LibraryIcon from "./icons/LibraryIcon.astro";
 import SearchIcon from "./icons/SearchIcon.astro";
 import ViewMoreIcon from "./icons/ViewMoreIcon.astro";
-
-interface Props {}
 ---
 
 <aside class="menu-wrapper">
   <nav class="h-full">
     <div class="bg-aside px-6 py-2 rounded-lg">
       <ul>
-        <AsideMenuItem element="a" href="/">
+        <AsideMenuItem tag="a" href="/">
           <HomeIcon slot="icon" /> Inicio
         </AsideMenuItem>
-        <AsideMenuItem element="a" href="/search">
+        <AsideMenuItem tag="a" href="/search">
           <SearchIcon slot="icon" /> Buscar
         </AsideMenuItem>
       </ul>
@@ -28,18 +27,18 @@ interface Props {}
           <li>
             <ul class="flex flex-row items-center gap-2">
               <AsideMenuItem
-                element="button"
+                tag="button"
                 gap=".75rem"
-                class={{ root: "px-2" }}
+                classes={{ root: "px-2" }}
               >
                 <LibraryIcon slot="icon" />Tu biblioteca
               </AsideMenuItem>
-              <AsideMenuItem element="button" class={{ root: "ml-auto" }}>
+              <AsideMenuItem tag="button" classes={{ root: "ml-auto" }}>
                 <AddIcon slot="icon" />
               </AsideMenuItem>
-              <AsideMenuItem element="button">
+              <AsideMenuItemReact tag="button">
                 <ViewMoreIcon slot="icon" />
-              </AsideMenuItem>
+              </AsideMenuItemReact>
             </ul>
           </li>
           <li class="flex flex-row gap-2 mt-3">
@@ -49,6 +48,15 @@ interface Props {}
           </li>
         </ul>
       </header>
+      <section class="mt-2">
+        <header class="pt-0.5">
+          <ul>
+            <AsideMenuItemReact tag="button">
+              <SearchIcon size="small" slot="icon" />
+            </AsideMenuItemReact>
+          </ul>
+        </header>
+      </section>
     </div>
   </nav>
 </aside>
