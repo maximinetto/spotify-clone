@@ -7,6 +7,8 @@ import HomeIcon from "./icons/HomeIcon.astro";
 import LibraryIcon from "./icons/LibraryIcon.astro";
 import SearchIcon from "./icons/SearchIcon.astro";
 import ViewMoreIcon from "./icons/ViewMoreIcon.astro";
+import HamburgerIcon from "./icons/HamburgerIcon.astro";
+import SearchInput from "./SearchInput.astro";
 ---
 
 <aside class="menu-wrapper">
@@ -48,11 +50,31 @@ import ViewMoreIcon from "./icons/ViewMoreIcon.astro";
           </li>
         </ul>
       </header>
-      <section class="mt-2">
-        <header class="pt-0.5">
-          <ul>
-            <AsideMenuItemReact tag="button">
+      <section class="mt-[2px]">
+        <header>
+          <ul class="flex flex-row justify-between">
+            <AsideMenuItemReact
+              tag="button"
+              classes={{
+                item: "absolute top-1/2 -translate-y-1/2",
+                root: "relative flex flex-row items-center",
+              }}
+              id="search-button"
+            >
+              <SearchInput
+                slot="component"
+                visible={false}
+                size="small"
+                id="search-input"
+              />
               <SearchIcon size="small" slot="icon" />
+            </AsideMenuItemReact>
+            <AsideMenuItemReact
+              tag="button"
+              iconPosition="right"
+              classes={{ item: "gap-1 px-2" }}
+            >
+              Recientes <HamburgerIcon slot="icon" />
             </AsideMenuItemReact>
           </ul>
         </header>
@@ -66,3 +88,23 @@ import ViewMoreIcon from "./icons/ViewMoreIcon.astro";
     grid-area: "aside";
   }
 </style>
+
+<script>
+  const button = document.getElementById("search-button");
+  const searchInput = document.getElementById("search-input");
+  button?.addEventListener("click", () => {
+    console.log("hello");
+    searchInput?.classList.add("open", "scale-in-hor-left");
+    searchInput?.classList.remove("scale-out-hor-left");
+  });
+
+  const handler = (ev: UIEvent) => {
+    if (!button?.contains(ev.target as Node) && ev.target !== searchInput) {
+      searchInput?.classList.remove("open", "scale-in-hor-left");
+      searchInput?.classList.add("scale-out-hor-left");
+    }
+  };
+
+  document.addEventListener("click", handler);
+  document.addEventListener("focusin", handler);
+</script>

@@ -10,6 +10,7 @@ export default {
         tag: "hsla(0,0%,100%,.07);",
         highlighting: "#1a1a1a",
         tagHighlighting: "hsla(0,0%,100%,.1)",
+        secondaryLight: "hsla(0,0%,100%,.7)",
       },
     },
   },
