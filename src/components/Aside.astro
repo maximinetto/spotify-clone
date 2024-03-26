@@ -7,6 +7,7 @@ import HomeIcon from "./icons/HomeIcon.astro";
 import LibraryIcon from "./icons/LibraryIcon.astro";
 import SearchIcon from "./icons/SearchIcon.astro";
 import ViewMoreIcon from "./icons/ViewMoreIcon.astro";
+import HamburgerIcon from "./icons/HamburgerIcon.astro";
 ---
 
 <aside class="menu-wrapper">
@@ -48,11 +49,18 @@ import ViewMoreIcon from "./icons/ViewMoreIcon.astro";
           </li>
         </ul>
       </header>
-      <section class="mt-2">
-        <header class="pt-0.5">
-          <ul>
+      <section class="mt-0.5">
+        <header class="">
+          <ul class="flex flex-row items-center justify-between">
             <AsideMenuItemReact tag="button">
               <SearchIcon size="small" slot="icon" />
+            </AsideMenuItemReact>
+            <AsideMenuItemReact
+              tag="button"
+              classes={{ text: "font-normal text-sm mt-0.5", item: "gap-1 px-2 hover:scale-105 flex-row-reverse " }}
+            >
+              <HamburgerIcon slot="icon" class="size-4 p-0"/>
+              Recientes
             </AsideMenuItemReact>
           </ul>
         </header>

@@ -8,6 +8,7 @@ interface BaseProps {
   classes?: {
     root?: string;
     item?: string;
+    text?: string;
   };
   gap?: string | number;
 }
@@ -37,7 +38,7 @@ export default function AsideMenuItem({
   const Element = (
     <>
       {icon}
-      <span className="font-bold menu-item__text">{children}</span>
+      <span className={clsx("font-bold menu-item__text p-0", classes?.text)}>{children}</span>
     </>
   );
 
